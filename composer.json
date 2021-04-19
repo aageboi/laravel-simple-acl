@@ -1,7 +1,7 @@
 {
     "name": "aageboi/laravel-simple-acl",
     "description": "Simple Users Access Control List Laravel Package",
-    "type": "project",
+    "type": "library",
     "license": "MIT",
     "authors": [
         {
