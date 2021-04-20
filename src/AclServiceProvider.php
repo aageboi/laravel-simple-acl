@@ -13,9 +13,9 @@ class AclServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // $this->app->make('Aageboi\Acl\Controllers\PermissionsController');
-        // $this->app->make('Aageboi\Acl\Controllers\RolesController');
-        // $this->app->make('Aageboi\Acl\Controllers\UsersController');
+        $this->mergeConfigFrom( __DIR__ . '/config.php', 'acl' );
+
+        $this->loadMigrationsFrom(__DIR__.'/migrations');
     }
 
     /**
@@ -25,22 +25,19 @@ class AclServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $configPath = $this->app['path.config'] . DIRECTORY_SEPARATOR . 'acl.php';
+        $this->publishes([__DIR__ . '/config.php' => $configPath]);
+
         $this->loadViewsFrom(__DIR__.'/views', 'acl');
 
         $this->loadRoutesFrom(__DIR__.'/routes.php');
 
-        // $this->loadMigrationsFrom(__DIR__.'/migrations');
-
         $this->loadTranslationsFrom(__DIR__.'/translations', 'acl');
 
-        if ($this->app->runningInConsole()) {
-            $this->commands([
-                // ServicesCheck::class,
-            ]);
-        }
-
-        $this->publishes([
-            __DIR__.'/migrations' => database_path('migrations/'),
-        ], 'migrations');
+        // if ($this->app->runningInConsole()) {
+        //     $this->commands([
+        //         // ServicesCheck::class,
+        //     ]);
+        // }
     }
 }

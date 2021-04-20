@@ -3,7 +3,7 @@
 @can('user_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.users.create") }}">
+            <a class="btn btn-success" href="{{ route("admin.acl-users.create") }}">
                 {{ trans('acl::global.add') }} {{ trans('acl::cruds.user.title_singular') }}
             </a>
         </div>
@@ -67,22 +67,24 @@
                             </td>
                             <td>
                                 @can('user_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.users.show', $user->id) }}">
-                                        {{ trans('acl::global.view') }}
+                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.acl-users.show', $user->id) }}" title="{{ trans('acl::global.view') }}">
+                                        <i class="fa fa-eye"></i>
                                     </a>
                                 @endcan
 
                                 @can('user_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.users.edit', $user->id) }}">
-                                        {{ trans('acl::global.edit') }}
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.acl-users.edit', $user->id) }}" title="{{ trans('acl::global.edit') }}">
+                                        <i class="fa fa-edit"></i>
                                     </a>
                                 @endcan
 
                                 @can('user_delete')
-                                    <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('acl::global.areYouSure') }}');" style="display: inline-block;">
+                                    <form action="{{ route('admin.acl-users.destroy', $user->id) }}" method="POST" onsubmit="return confirm('{{ trans('acl::global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('acl::global.delete') }}">
+                                        <button type="submit" class="btn btn-xs btn-danger" title="{{ trans('acl::global.delete') }}">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
                                     </form>
                                 @endcan
 
@@ -111,7 +113,7 @@
   let deleteButtonTrans = '{{ trans('acl::global.datatables.delete') }}'
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.users.massDestroy') }}",
+    url: "{{ route('admin.acl-users.massDestroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {

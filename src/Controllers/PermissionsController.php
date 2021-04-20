@@ -31,7 +31,7 @@ class PermissionsController extends Controller
     {
         $permission = Permission::create($request->all());
 
-        return redirect()->route('admin.permissions.index')->with('message', 'Success');
+        return redirect()->route(config('acl.route.as') . 'permissions.index')->with('message', 'Success');
 
     }
 
@@ -46,7 +46,7 @@ class PermissionsController extends Controller
     {
         $permission->update($request->all());
 
-        return redirect()->route('admin.permissions.index')->with('message', 'Success');
+        return redirect()->route(config('acl.route.as') . 'permissions.index')->with('message', 'Success');
 
     }
 

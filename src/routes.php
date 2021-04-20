@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'auth']], function () {
+Route::group(['prefix' => config('acl.route.prefix'), 'as' => config('acl.route.as'), 'middleware' => ['web', 'auth']], function () {
     // Permissions
     Route::delete('permissions/destroy', 'Aageboi\Acl\Controllers\PermissionsController@massDestroy')->name('permissions.massDestroy');
     Route::resource('permissions', 'Aageboi\Acl\Controllers\PermissionsController');
@@ -8,5 +8,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['web', 'au
     // Roles
     Route::delete('roles/destroy', 'Aageboi\Acl\Controllers\RolesController@massDestroy')->name('roles.massDestroy');
     Route::resource('roles', 'Aageboi\Acl\Controllers\RolesController');
-    Route::resource('users', 'Aageboi\Acl\Controllers\UsersController');
+
+    // ACL Users
+    Route::delete('acl-users/destroy', 'Aageboi\Acl\Controllers\UsersController@massDestroy')->name('acl-users.massDestroy');
+    Route::resource('acl-users', 'Aageboi\Acl\Controllers\UsersController');
 });

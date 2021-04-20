@@ -3,7 +3,6 @@
 namespace Aageboi\Acl;
 
 use Aageboi\Acl\Entities\Role;
-use Aageboi\Acl\Entities\User;
 use Closure;
 use Illuminate\Support\Facades\Gate;
 
@@ -22,8 +21,6 @@ class AuthGates
         $user = auth()->user();
 
         if ($user) {
-            // integrate user model with package model
-            $puser            = User::find($user->id);
             $roles            = Role::with('permissions')->get();
             $permissionsArray = [];
 
@@ -35,8 +32,8 @@ class AuthGates
             }
 
             foreach ($permissionsArray as $title => $roles) {
-                Gate::define($title, function ($user) use ($roles, $puser) {
-                    return count(array_intersect($puser->roles->pluck('id')->toArray(), $roles)) > 0;
+                Gate::define($title, function ($user) use ($roles) {
+                    return count(array_intersect($user->roles->pluck('id')->toArray(), $roles)) > 0;
                 });
             }
         }

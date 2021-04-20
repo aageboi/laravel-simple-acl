@@ -35,7 +35,7 @@ class RolesController extends Controller
         $role = Role::create($request->all());
         $role->permissions()->sync($request->input('permissions', []));
 
-        return redirect()->route('admin.roles.index')->with('message', 'Success');
+        return redirect()->route(config('acl.route.as') . 'roles.index')->with('message', 'Success');
 
     }
 
@@ -55,7 +55,7 @@ class RolesController extends Controller
         $role->update($request->all());
         $role->permissions()->sync($request->input('permissions', []));
 
-        return redirect()->route('admin.roles.index')->with('message', 'Success');
+        return redirect()->route(config('acl.route.as') . 'roles.index')->with('message', 'Success');
 
     }
 

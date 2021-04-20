@@ -21,7 +21,12 @@ class CreateRoleUserPivotTable extends Migration
             $table->foreign('role_id', 'role_id_fk_1230852')->references('id')->on('roles')->onDelete('cascade');
         });
 
-        User::findOrFail(1)->roles()->sync(1);
+        $userClassName = config('acl.user-model');
+
+        /** @var \Illuminate\Database\Eloquent\Model $userModel */
+        $userModel = new $userClassName;
+
+        $userModel->findOrFail(1)->roles()->sync(1);
     }
 
     /**
