@@ -1,4 +1,4 @@
-@extends('acl::layout')
+@extends(config('acl.layout'))
 @section('content')
 @can('user_create')
     <div style="margin-bottom: 10px;" class="row">

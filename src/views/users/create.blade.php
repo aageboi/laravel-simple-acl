@@ -1,4 +1,4 @@
-@extends('acl::layout')
+@extends(config('acl.layout'))
 @section('content')
 
 <div class="card">

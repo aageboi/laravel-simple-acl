@@ -1,4 +1,4 @@
-@extends('acl::layout')
+@extends(config('acl.layout'))
 
 @section('heading')
 <nav class="navbar navbar-expand-lg bg-white pl-4 text-danger justify-content-between" style="border-bottom: 1px solid #c8ced3">
