@@ -15,19 +15,14 @@
 <div class="card">
   <div class="card-body">
     <div class="table-responsive">
-      <table class="table table-hover datatable datatable-Role">
+      <table class="table table-hover table-striped table-borderless datatable datatable-Role">
         <thead>
           <tr>
-            <th width="10%"></th>
-            <th>
-                {{ trans('acl::cruds.role.fields.id') }}
-            </th>
-            <th>
+            <th width="5%"></th>
+            <th width="20%">
                 {{ trans('acl::cruds.role.fields.title') }}
             </th>
-            <th>
-                {{ trans('acl::cruds.role.fields.permissions') }}
-            </th>
+            <th>Roles</th>
             <th width="10%">&nbsp;</th>
           </tr>
         </thead>
@@ -35,9 +30,6 @@
           @foreach($roles as $key => $role)
           <tr data-entry-id="{{ $role->id }}">
             <td></td>
-            <td>
-              {{ $role->id ?? '' }}
-            </td>
             <td>
               {{ $role->title ?? '' }}
             </td>
@@ -47,12 +39,6 @@
               @endforeach
             </td>
             <td align="right">
-              @can('role_show')
-              <a class="btn btn-sm btn-outline-primary" href="{{ route(config('acl.route.as') . 'roles.show', $role->id) }}" title="{{ trans('acl::global.view') }}">
-                <i class="fa fa-eye"></i>
-              </a>
-              @endcan
-
               @can('role_edit')
               <a class="btn btn-sm btn-outline-info" href="{{ route(config('acl.route.as') . 'roles.edit', $role->id) }}" title="{{ trans('acl::global.edit') }}">
                 <i class="fa fa-edit"></i>

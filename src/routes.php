@@ -8,8 +8,4 @@ Route::group(['prefix' => config('acl.route.prefix'), 'as' => config('acl.route.
     // Roles
     Route::delete('roles/destroy', 'Aageboi\Acl\Controllers\RolesController@massDestroy')->name('roles.massDestroy');
     Route::resource('roles', 'Aageboi\Acl\Controllers\RolesController');
-
-    // ACL Users
-    Route::delete('acl-users/destroy', 'Aageboi\Acl\Controllers\UsersController@massDestroy')->name('acl-users.massDestroy');
-    Route::resource('acl-users', 'Aageboi\Acl\Controllers\UsersController');
 });

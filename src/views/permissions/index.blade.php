@@ -15,13 +15,10 @@
 <div class="card">
   <div class="card-body">
     <div class="table-responsive">
-      <table class="table table-hover datatable datatable-Permission">
+      <table class="table table-hover table-striped table-borderless datatable datatable-Permission">
         <thead>
           <tr>
             <th width="10%"></th>
-            <th width="10%">
-              {{ trans('acl::cruds.permission.fields.id') }}
-            </th>
             <th>
               {{ trans('acl::cruds.permission.fields.title') }}
             </th>
@@ -33,20 +30,11 @@
             <tr data-entry-id="{{ $permission->id }}">
               <td></td>
               <td>
-                {{ $permission->id ?? '' }}
+                {{ $permission->title ?? '' }}
               </td>
               <td>
-                <span class="badge badge-info">{{ $permission->title ?? '' }}</span>
-              </td>
-              <td>
-                @can('permission_show')
-                <a class="btn btn-xs btn-primary" href="{{ route(config('acl.route.as') . 'permissions.show', $permission->id) }}" title="{{ trans('acl::global.view') }}">
-                  <i class="fa fa-eye"></i>
-                </a>
-                @endcan
-
                 @can('permission_edit')
-                <a class="btn btn-xs btn-info" href="{{ route(config('acl.route.as') . 'permissions.edit', $permission->id) }}" title="{{ trans('acl::global.edit') }}">
+                <a class="btn btn-sm btn-outline-info" href="{{ route(config('acl.route.as') . 'permissions.edit', $permission->id) }}" title="{{ trans('acl::global.edit') }}">
                   <i class="fa fa-edit"></i>
                 </a>
                 @endcan
@@ -55,7 +43,7 @@
                 <form action="{{ route(config('acl.route.as') . 'permissions.destroy', $permission->id) }}" method="POST" onsubmit="return confirm('{{ trans('acl::global.areYouSure') }}');" style="display: inline-block;">
                   <input type="hidden" name="_method" value="DELETE">
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                  <button type="submit" class="btn btn-xs btn-danger" title="{{ trans('acl::global.delete') }}">
+                  <button type="submit" class="btn btn-sm btn-outline-danger" title="{{ trans('acl::global.delete') }}">
                     <i class="fa fa-trash"></i>
                   </button>
                 </form>

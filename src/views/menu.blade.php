@@ -37,16 +37,6 @@
                                 </a>
                             </li>
                         @endcan
-                        @can('user_access')
-                            <li class="nav-item">
-                                <a href="{{ route(config('acl.route.as') . "acl-users.index") }}" class="nav-link {{ request()->is('admin/acl-users') || request()->is('admin/acl-users/*') ? 'active' : '' }}">
-                                    <i class="fa-fw fas fa-user nav-icon">
-
-                                    </i>
-                                    {{ trans('acl::cruds.user.title') }}
-                                </a>
-                            </li>
-                        @endcan
                     </ul>
                 </li>
             @endcan

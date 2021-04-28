@@ -16,9 +16,13 @@ class RolesController extends Controller
     {
         abort_if(Gate::denies('role_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $roles = Role::all();
+        if (auth()->user()->id > 1)
+            $roles = Role::where('id', '<>', 1)->get();
+        else 
+            $roles = Role::all();
+        $permissions = Permission::all();
 
-        return view('acl::roles.index', compact('roles'));
+        return view('acl::roles.index', compact('roles', 'permissions'));
     }
 
     public function create()
