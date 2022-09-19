@@ -22,7 +22,7 @@ class RolesController extends Controller
             $roles = Role::all();
         $permissions = Permission::all();
 
-        return view('acl::roles.index', compact('roles', 'permissions'));
+        return view(config('view').'roles.index', compact('roles', 'permissions'));
     }
 
     public function create()
@@ -31,7 +31,7 @@ class RolesController extends Controller
 
         $permissions = Permission::all()->pluck('title', 'id');
 
-        return view('acl::roles.create', compact('permissions'));
+        return view(config('view').'roles.create', compact('permissions'));
     }
 
     public function store(StoreRoleRequest $request)
@@ -51,7 +51,7 @@ class RolesController extends Controller
 
         $role->load('permissions');
 
-        return view('acl::roles.edit', compact('permissions', 'role'));
+        return view(config('view').'roles.edit', compact('permissions', 'role'));
     }
 
     public function update(UpdateRoleRequest $request, Role $role)
@@ -69,7 +69,7 @@ class RolesController extends Controller
 
         $role->load('permissions');
 
-        return view('acl::roles.show', compact('role'));
+        return view(config('view').'roles.show', compact('role'));
     }
 
     public function destroy(Role $role)

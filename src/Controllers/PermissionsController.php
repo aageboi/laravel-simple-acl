@@ -17,14 +17,14 @@ class PermissionsController extends Controller
 
         $permissions = Permission::all();
 
-        return view('acl::permissions.index', compact('permissions'));
+        return view(config('view').'permissions.index', compact('permissions'));
     }
 
     public function create()
     {
         abort_if(Gate::denies('permission_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('acl::permissions.create');
+        return view(config('view').'permissions.create');
     }
 
     public function store(StorePermissionRequest $request)
@@ -39,7 +39,7 @@ class PermissionsController extends Controller
     {
         abort_if(Gate::denies('permission_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('acl::permissions.edit', compact('permission'));
+        return view(config('view').'permissions.edit', compact('permission'));
     }
 
     public function update(UpdatePermissionRequest $request, Permission $permission)
@@ -54,7 +54,7 @@ class PermissionsController extends Controller
     {
         abort_if(Gate::denies('permission_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('acl::permissions.show', compact('permission'));
+        return view(config('view').'permissions.show', compact('permission'));
     }
 
     public function destroy(Permission $permission)

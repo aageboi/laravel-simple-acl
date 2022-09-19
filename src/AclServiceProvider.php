@@ -26,9 +26,13 @@ class AclServiceProvider extends ServiceProvider
     public function boot()
     {
         $configPath = $this->app['path.config'] . DIRECTORY_SEPARATOR . 'acl.php';
-        $this->publishes([__DIR__ . '/config.php' => $configPath]);
 
         $this->loadViewsFrom(__DIR__.'/views', 'acl');
+
+        $this->publishes([
+            __DIR__ . '/config.php' => $configPath,
+            __DIR__ . '/views' => resource_path('views/acl'),
+        ]);
 
         $this->loadRoutesFrom(__DIR__.'/routes.php');
 
